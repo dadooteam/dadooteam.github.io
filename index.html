@@ -9,7 +9,7 @@
         <script src="//cdn.bootcss.com/echarts/3.2.3/echarts.js"></script>
     </head>
     <body>
-        <div id="ngge" style="margin-left:5%;margin-right:5%;width:90%;height:400px;" >
+        <div id="ngge" style="width:100%;height:400px;" >
         </div>
         <script>
             var xdata = ["2015-12-21","2016-01-23","2016-01-30","2016-02-20","2016-02-27","2016-03-05","2016-03-12","2016-03-19","2016-03-26","2016-04-02","2016-04-09","2016-04-16","2016-04-23","2016-04-30","2016-05-07","2016-05-14","2016-05-21","2016-05-28","2016-06-04","2016-06-11","2016-06-18","2016-06-25","2016-07-02","2016-07-09","2016-07-16","2016-07-23","2016-07-30","2016-08-06","2016-08-13","2016-08-20","2016-08-27","2016-09-03","2016-09-10","2016-09-17","2016-09-24","2016-10-01","2016-10-08"];
@@ -26,11 +26,14 @@
                 tooltip: {},
                 toolbox: {
                     show: true,
+                    orient: 'vertical',
+                    itemSize:25,
+                    itemGap:20,
                     feature: {
                         dataZoom: {
                             yAxisIndex: 'none'
                         },
-                        dataView: {readOnly: false},
+                        dataView: {readOnly: true},
                         restore: {},
                         saveAsImage: {}
                     }
