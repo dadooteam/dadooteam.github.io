@@ -2,63 +2,66 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-        <title>WeUI</title>
+        <title>Dadoo量化交易组</title>
         <link href="//cdn.bootcss.com/weui/1.0.1/style/weui.css" rel="stylesheet">
         <script src="//cdn.bootcss.com/vue/2.0.1/vue.js"></script>
         <script src="//cdn.bootcss.com/vue-router/2.0.0/vue-router.js"></script>
+        <script src="//cdn.bootcss.com/echarts/3.2.3/echarts.js"></script>
     </head>
     <body>
-        <div id="app">
-            <div style="padding-left:40px">
-                <h1>Dadoo</h1>
-            </div>
-            <router-link to="/foo">Go to Foo</router-link>
-            <router-link to="/bar">Go to Bar</router-link>
-        </div>
-        
-        <!--<div class="weui-panel weui-panel_access">
-            <div class="weui-panel__hd">公告</div>
-            <div class="weui-panel__bd">
-                <div class="weui-media-box weui-media-box_text">
-                    <h4 class="weui-media-box__title">标题一</h4>
-                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                </div>
-                <div class="weui-media-box weui-media-box_text">
-                    <h4 class="weui-media-box__title">标题二</h4>
-                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                </div>
-            </div>
-            <div class="weui-panel__ft">
-                <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
-                    <div class="weui-cell__bd">查看更多</div>
-                    <span class="weui-cell__ft"></span>
-                </a>    
-            </div>
-        </div>-->
-        <!--<div class="weui-tab">
-            <div class="weui-tab__panel">
-            </div>
-            <div class="weui-tabbar">
-                <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
-                    <img src="//weui.io/images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
-                    <p class="weui-tabbar__label">主页</p>
-                </a>
-                <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
-                    <img src="//weui.io/images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
-                    <p class="weui-tabbar__label">基金</p>
-                </a>
-                <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
-                    <img src="//weui.io/images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
-                    <p class="weui-tabbar__label">我</p>
-                </a>
-                <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
-                    <img src="//weui.io/images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
-                    <p class="weui-tabbar__label">关于</p>
-                </a>
-            </div>
+        <div id="ngge" style="margin-left:5%;margin-right:5%;width:90%;height:400px;" >
         </div>
         <script>
-            
-        </script>-->
+            var xdata = ["2015-12-21","2016-01-23","2016-01-30","2016-02-20","2016-02-27","2016-03-05","2016-03-12","2016-03-19","2016-03-26","2016-04-02","2016-04-09","2016-04-16","2016-04-23","2016-04-30","2016-05-07","2016-05-14","2016-05-21","2016-05-28","2016-06-04","2016-06-11","2016-06-18","2016-06-25","2016-07-02","2016-07-09","2016-07-16","2016-07-23","2016-07-30","2016-08-06","2016-08-13","2016-08-20","2016-08-27","2016-09-03","2016-09-10","2016-09-17","2016-09-24","2016-10-01","2016-10-08"];
+            var ydata = [1.0000, 0.9272, 0.9257, 0.9202, 0.9204, 0.9559, 0.9574, 0.9656, 0.9702, 0.9756, 0.9662, 0.9815, 0.9744, 0.9705, 0.9150, 0.8268, 0.8409, 0.8396, 0.8457, 0.8388, 0.8355, 0.8116, 0.8234, 0.8261, 0.8239, 0.8328, 0.8287, 0.8296, 0.8295, 0.8330, 0.8321, 0.8307, 0.8258, 0.8090, 0.8245, 0.8186, 0.8192];
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('ngge'));
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: 'NGGE净值曲线'
+                },
+                tooltip: {},
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        dataView: {readOnly: false},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    data: xdata
+                },
+                yAxis: {
+                    min: Math.min.apply(null, ydata) - 0.02,
+                    max: Math.max.apply(null, ydata) + 0.02
+                },
+                dataZoom: [
+                    {   // 这个dataZoom组件，默认控制x轴。
+                        type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                        start: 100 - 1000.0 / xdata.length,      // 左边在 10% 的位置。
+                        end: 100         // 右边在 60% 的位置。
+                    }
+                ],
+                series: [{
+                    name: '净值',
+                    type: 'line',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                    data: ydata
+                }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
     </body>
 </html>
