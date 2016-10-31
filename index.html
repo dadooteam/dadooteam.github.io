@@ -11,8 +11,10 @@
     <body>
         <div id="ngge" style="width:100%;height:400px;" >
         </div>
+        <div id="gushou" style="width:100%;height:400px;" >
+        </div>
         <script>
-            var xdata = ["2015-12-21","2016-01-23","2016-01-30","2016-02-20",
+            var ngge_xdata = ["2015-12-21","2016-01-23","2016-01-30","2016-02-20",
                          "2016-02-27","2016-03-05","2016-03-12","2016-03-19",
                          "2016-03-26","2016-04-02","2016-04-09","2016-04-16",
                          "2016-04-23","2016-04-30","2016-05-07","2016-05-14",
@@ -22,7 +24,7 @@
                          "2016-08-13","2016-08-20","2016-08-27","2016-09-03",
                          "2016-09-10","2016-09-17","2016-09-24","2016-10-01",
                          "2016-10-08","2016-10-15","2016-10-22","2016-10-29"];
-            var ydata = [1.0000, 0.9272, 0.9257, 0.9202, 0.9204, 0.9559, 
+            var ngge_ydata = [1.0000, 0.9272, 0.9257, 0.9202, 0.9204, 0.9559, 
                          0.9574, 0.9656, 0.9702, 0.9756, 0.9662, 0.9815, 
                          0.9744, 0.9705, 0.9150, 0.8268, 0.8409, 0.8396, 
                          0.8457, 0.8388, 0.8355, 0.8116, 0.8234, 0.8261, 
@@ -30,9 +32,9 @@
                          0.8321, 0.8307, 0.8258, 0.8090, 0.8245, 0.8186, 
                          0.8192, 0.8156, 0.8171, 0.8144];
             // 基于准备好的dom，初始化echarts实例
-            var myChart = echarts.init(document.getElementById('ngge'));
+            var nggeChart = echarts.init(document.getElementById('ngge'));
             // 指定图表的配置项和数据
-            var option = {
+            var nggeOption = {
                 title: {
                     text: 'NGGE净值曲线',
                     subtext: '总份额:12.37万',
@@ -56,16 +58,16 @@
                     }
                 },
                 xAxis: {
-                    data: xdata
+                    data: ngge_xdata
                 },
                 yAxis: {
-                    min: Math.min.apply(null, ydata) - 0.02,
-                    max: Math.max.apply(null, ydata) + 0.02
+                    min: Math.min.apply(null, ngge_ydata) - 0.02,
+                    max: Math.max.apply(null, ngge_ydata) + 0.02
                 },
                 dataZoom: [
                     {   // 这个dataZoom组件，默认控制x轴。
                         type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
-                        start: 100 - 1000 / xdata.length,      // 左边在 10% 的位置。
+                        start: 100 - 1000 / ngge_xdata.length,      // 左边在 10% 的位置。
                         end: 100         // 右边在 60% 的位置。
                     }
                 ],
@@ -78,12 +80,12 @@
                             position: 'top'
                         }
                     },
-                    data: ydata
+                    data: ngge_ydata
                 }]
             };
 
             // 使用刚指定的配置项和数据显示图表。
-            myChart.setOption(option);
+            nggeChart.setOption(nggeOption);
         </script>
     </body>
 </html>
