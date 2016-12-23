@@ -10,9 +10,10 @@
   <script>
     var app = new Vue({
       el: '#app',
-      ready: function() {
+      mounted: function() {
+        var that = this;
         this.$http.get("http://localhost:8080/stocks").then((response) => {
-          this.$set('message', response.data)
+          that.$set(that.message, response.data)
         }).catch(function(response) {
           console.log(response)
         })
