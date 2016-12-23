@@ -11,8 +11,10 @@
     var app = new Vue({
       el: '#app',
       ready: function() {
-        this.$http.get("http://localhost:8080/stocks", function(data){
-          this.$set('message', data);
+        this.$http.get("http://localhost:8080/stocks").then((response) => {
+          this.$set('message', response.data)
+        }).catch(function(response) {
+          console.log(response)
         })
       },
       data: {
